@@ -7,7 +7,8 @@ import org.antlr.v4.runtime.tree.*
 import java.io.FileInputStream
 
 fun main(args: Array<String>) {
-    val inputStream = if (args.isNotEmpty()) {
+    EelParserFacade.parse(FileInputStream("target/classes/program.txt"))
+    /*val inputStream = if (args.isNotEmpty()) {
         FileInputStream(args[0])
     } else {
         FileInputStream("target/classes/program.txt")
@@ -21,5 +22,7 @@ fun main(args: Array<String>) {
     val tree = parser.prog()
     val walker = ParseTreeWalker()
 
-    walker.walk(listener, tree)
+    println("Se mit træ!\n" + tree.toStringTree(parser.ruleNames.toMutableList()))
+
+    walker.walk(listener, tree)*/
 }

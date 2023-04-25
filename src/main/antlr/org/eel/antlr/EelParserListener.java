@@ -1,4 +1,4 @@
-// Generated from /Users/jacob/IdeaProjects/eelKotlin/src/main/resources/antlr/EelParser.g4 by ANTLR 4.12.0
+// Generated from /Users/jacob/IdeaProjects/eel/src/main/resources/antlr/EelParser.g4 by ANTLR 4.12.0
 package org.eel.antlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,35 +8,25 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface EelParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link EelParser#prog}.
+	 * Enter a parse tree produced by {@link EelParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterProg(EelParser.ProgContext ctx);
+	void enterProgram(EelParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link EelParser#prog}.
+	 * Exit a parse tree produced by {@link EelParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitProg(EelParser.ProgContext ctx);
+	void exitProgram(EelParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link EelParser#procedures}.
+	 * Enter a parse tree produced by {@link EelParser#procedure}.
 	 * @param ctx the parse tree
 	 */
-	void enterProcedures(EelParser.ProceduresContext ctx);
+	void enterProcedure(EelParser.ProcedureContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link EelParser#procedures}.
+	 * Exit a parse tree produced by {@link EelParser#procedure}.
 	 * @param ctx the parse tree
 	 */
-	void exitProcedures(EelParser.ProceduresContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link EelParser#procecure}.
-	 * @param ctx the parse tree
-	 */
-	void enterProcecure(EelParser.ProcecureContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link EelParser#procecure}.
-	 * @param ctx the parse tree
-	 */
-	void exitProcecure(EelParser.ProcecureContext ctx);
+	void exitProcedure(EelParser.ProcedureContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link EelParser#formalParameters}.
 	 * @param ctx the parse tree
@@ -48,25 +38,27 @@ public interface EelParserListener extends ParseTreeListener {
 	 */
 	void exitFormalParameters(EelParser.FormalParametersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link EelParser#lines}.
+	 * Enter a parse tree produced by {@link EelParser#line}.
 	 * @param ctx the parse tree
 	 */
-	void enterLines(EelParser.LinesContext ctx);
+	void enterLine(EelParser.LineContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link EelParser#lines}.
+	 * Exit a parse tree produced by {@link EelParser#line}.
 	 * @param ctx the parse tree
 	 */
-	void exitLines(EelParser.LinesContext ctx);
+	void exitLine(EelParser.LineContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link EelParser#declaration}.
+	 * Enter a parse tree produced by the {@code varDelaration}
+	 * labeled alternative in {@link EelParser#declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaration(EelParser.DeclarationContext ctx);
+	void enterVarDelaration(EelParser.VarDelarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link EelParser#declaration}.
+	 * Exit a parse tree produced by the {@code varDelaration}
+	 * labeled alternative in {@link EelParser#declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaration(EelParser.DeclarationContext ctx);
+	void exitVarDelaration(EelParser.VarDelarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link EelParser#assignment}.
 	 * @param ctx the parse tree

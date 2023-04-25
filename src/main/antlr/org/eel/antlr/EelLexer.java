@@ -1,4 +1,4 @@
-// Generated from /Users/jacob/IdeaProjects/eelKotlin/src/main/resources/antlr/EelLexer.g4 by ANTLR 4.12.0
+// Generated from /Users/jacob/IdeaProjects/eel/src/main/resources/antlr/EelLexer.g4 by ANTLR 4.12.0
 package org.eel.antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -20,7 +20,7 @@ public class EelLexer extends Lexer {
 		WS=1, LET=2, BEGINPROCEDURE=3, ENDPROCEDURE=4, RETURN=5, REPEATWHILE=6, 
 		ENDREPEAT=7, IF=8, ENDIF=9, THEN=10, ELSE=11, INTLIT=12, STRINGLIT=13, 
 		PLUS=14, MINUS=15, ASTERISK=16, DIVISION=17, ASSIGN=18, LPAREN=19, RPAREN=20, 
-		COMMA=21, FUNCTIONS=22, METHODS=23, BOOLOP=24, ID=25;
+		COMMA=21, FUNCTIONS=22, METHODS=23, BOOLEANOPERATOR=24, ID=25;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -34,7 +34,7 @@ public class EelLexer extends Lexer {
 			"WS", "LET", "BEGINPROCEDURE", "ENDPROCEDURE", "RETURN", "REPEATWHILE", 
 			"ENDREPEAT", "IF", "ENDIF", "THEN", "ELSE", "INTLIT", "STRINGLIT", "PLUS", 
 			"MINUS", "ASTERISK", "DIVISION", "ASSIGN", "LPAREN", "RPAREN", "COMMA", 
-			"FUNCTIONS", "METHODS", "BOOLOP", "ID"
+			"FUNCTIONS", "METHODS", "BOOLEANOPERATOR", "ID"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -52,7 +52,7 @@ public class EelLexer extends Lexer {
 			null, "WS", "LET", "BEGINPROCEDURE", "ENDPROCEDURE", "RETURN", "REPEATWHILE", 
 			"ENDREPEAT", "IF", "ENDIF", "THEN", "ELSE", "INTLIT", "STRINGLIT", "PLUS", 
 			"MINUS", "ASTERISK", "DIVISION", "ASSIGN", "LPAREN", "RPAREN", "COMMA", 
-			"FUNCTIONS", "METHODS", "BOOLOP", "ID"
+			"FUNCTIONS", "METHODS", "BOOLEANOPERATOR", "ID"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();

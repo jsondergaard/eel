@@ -3,5 +3,12 @@ procedure main()
         print("Hej verden!")
     endIf
 
+    let valueOne = 2
+    let valueTwo = 3
+
+    let valueThree = valueOne + valueTwo
+
+    print(valueThree)
+
     print("Farvel verden!")
 endProcedure

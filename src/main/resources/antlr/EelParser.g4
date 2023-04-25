@@ -4,12 +4,11 @@ parser grammar EelParser;
 
 options {tokenVocab=EelLexer;}
 
-prog:                       procedures EOF;
-procedures:                 procecure+;
-procecure:                  BEGINPROCEDURE ID LPAREN formalParameters? RPAREN lines ENDPROCEDURE;
+program:                    procedures=procedure+ EOF;
+procedure:                  BEGINPROCEDURE ID LPAREN formalParameters? RPAREN lines=line+ ENDPROCEDURE;
 formalParameters:           ID (COMMA ID)*;
-lines:                      (declaration | statement | controlStructure)*;
-declaration:                LET ID assignment?;
+line:                       (declaration | statement | controlStructure);
+declaration:                LET ID assignment? #varDelaration;
 assignment:                 ASSIGN expression;
 statement:                  RETURN? expression;
 expression:                 userValue (assignment | (operator value)*)
@@ -24,12 +23,12 @@ boolOperator:               BOOLEANOPERATOR;
 controlStructure:           (iterativeControlStructure
                             | selectiveControlStructure);
 selectiveControlStructure:  ifStructure;
-ifStructure:                ifCondition THEN lines elseIfStructure* elseStructure? ENDIF;
+ifStructure:                ifCondition THEN line elseIfStructure* elseStructure? ENDIF;
 ifCondition:                IF LPAREN expression RPAREN;
-elseIfStructure:            ELSE ifCondition lines;
-elseStructure:              ELSE THEN lines;
+elseIfStructure:            ELSE ifCondition line;
+elseStructure:              ELSE THEN line;
 iterativeControlStructure:  repeatStructure;
-repeatStructure:            REPEATWHILE LPAREN expression RPAREN lines ENDREPEAT;
+repeatStructure:            REPEATWHILE LPAREN expression RPAREN line ENDREPEAT;
 value:                      (staticValue
                             | userValue);
 staticValue:                (INTLIT

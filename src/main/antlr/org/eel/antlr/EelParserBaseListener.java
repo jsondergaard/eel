@@ -1,4 +1,4 @@
-// Generated from /Users/jacob/IdeaProjects/eelKotlin/src/main/resources/antlr/EelParser.g4 by ANTLR 4.12.0
+// Generated from /Users/jacob/IdeaProjects/eel/src/main/resources/antlr/EelParser.g4 by ANTLR 4.12.0
 package org.eel.antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -17,37 +17,25 @@ public class EelParserBaseListener implements EelParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProg(EelParser.ProgContext ctx) { }
+	@Override public void enterProgram(EelParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProg(EelParser.ProgContext ctx) { }
+	@Override public void exitProgram(EelParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProcedures(EelParser.ProceduresContext ctx) { }
+	@Override public void enterProcedure(EelParser.ProcedureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProcedures(EelParser.ProceduresContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterProcecure(EelParser.ProcecureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProcecure(EelParser.ProcecureContext ctx) { }
+	@Override public void exitProcedure(EelParser.ProcedureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -65,25 +53,25 @@ public class EelParserBaseListener implements EelParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLines(EelParser.LinesContext ctx) { }
+	@Override public void enterLine(EelParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLines(EelParser.LinesContext ctx) { }
+	@Override public void exitLine(EelParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration(EelParser.DeclarationContext ctx) { }
+	@Override public void enterVarDelaration(EelParser.VarDelarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration(EelParser.DeclarationContext ctx) { }
+	@Override public void exitVarDelaration(EelParser.VarDelarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
