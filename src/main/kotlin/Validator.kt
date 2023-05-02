@@ -4,7 +4,7 @@ import java.util.*
 
 data class Error(val message: String, val position: Point)
 
-fun Procedure.validate() : List<Error> {
+fun EelFile.validate() : List<Error> {
     val errors = LinkedList<Error>()
 
     // check a variable is not duplicated
@@ -19,13 +19,13 @@ fun Procedure.validate() : List<Error> {
     }
 
     // check a variable is not referred before being declared
-//    this.specificProcess(VarReference::class.java) {
-//        if (!varsByName.containsKey(it.varName)) {
-//            errors.add(Error("There is no variable named '${it.varName}'", it.position!!.start))
-//        } else if (it.isBefore(varsByName[it.varName]!!)) {
-//            errors.add(Error("You cannot refer to variable '${it.varName}' before its declaration", it.position!!.start))
-//        }
-//    }
+    this.specificProcess(VarReference::class.java) {
+        if (!varsByName.containsKey(it.varName)) {
+            errors.add(Error("There is no variable named '${it.varName}'", it.position!!.start))
+        } else if (it.isBefore(varsByName[it.varName]!!)) {
+            errors.add(Error("You cannot refer to variable '${it.varName}' before its declaration", it.position!!.start))
+        }
+    }
 //    this.specificProcess(Assignment::class.java) {
 //        if (!varsByName.containsKey(it.varName)) {
 //            errors.add(Error("There is no variable named '${it.varName}'", it.position!!.start))

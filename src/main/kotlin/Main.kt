@@ -36,5 +36,5 @@ fun main(args: Array<String>) {
         return
     }
 
-    println(root.lines)
+    println(root)
 }

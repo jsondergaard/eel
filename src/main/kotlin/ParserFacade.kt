@@ -2,7 +2,7 @@ package org.eel
 
 import org.eel.antlr.EelLexer
 import org.eel.antlr.EelParser
-import org.eel.antlr.EelParser.ProcedureContext
+import org.eel.antlr.EelParser.EelFileContext
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.ATNConfigSet
 import org.antlr.v4.runtime.dfa.DFA
@@ -13,11 +13,11 @@ import java.io.InputStream
 import java.nio.charset.Charset
 import java.util.*
 
-data class AntlrParsingResult(val root : ProcedureContext?, val errors: List<Error>) {
+data class AntlrParsingResult(val root : EelFileContext?, val errors: List<Error>) {
     fun isCorrect() = errors.isEmpty() && root != null
 }
 
-data class ParsingResult(val root : Procedure?, val errors: List<Error>) {
+data class ParsingResult(val root : EelFile?, val errors: List<Error>) {
     fun isCorrect() = errors.isEmpty() && root != null
 }
 
@@ -55,7 +55,7 @@ object EelAntlrParserFacade {
         val parser = EelParser(CommonTokenStream(lexer))
         parser.removeErrorListeners()
         parser.addErrorListener(errorListener)
-        val antlrRoot = parser.procedure()
+        val antlrRoot = parser.eelFile()
         return AntlrParsingResult(antlrRoot, lexicalAndSyntaticErrors)
     }
 

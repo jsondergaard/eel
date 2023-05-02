@@ -23,13 +23,13 @@ public class EelParser extends Parser {
 		COMMA=22, GREATERTHAN=23, LESSTHAN=24, FUNCTIONS=25, METHODS=26, BOOLEANOPERATOR=27, 
 		WS=28, ID=29;
 	public static final int
-		RULE_procedures = 0, RULE_procedure = 1, RULE_parameters = 2, RULE_line = 3, 
+		RULE_eelFile = 0, RULE_procedure = 1, RULE_parameters = 2, RULE_line = 3, 
 		RULE_statement = 4, RULE_varDeclaration = 5, RULE_assignment = 6, RULE_return = 7, 
 		RULE_expression = 8, RULE_ifStruct = 9, RULE_elseStructure = 10, RULE_function = 11, 
 		RULE_print = 12;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"procedures", "procedure", "parameters", "line", "statement", "varDeclaration", 
+			"eelFile", "procedure", "parameters", "line", "statement", "varDeclaration", 
 			"assignment", "return", "expression", "ifStruct", "elseStructure", "function", 
 			"print"
 		};
@@ -106,7 +106,8 @@ public class EelParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class ProceduresContext extends ParserRuleContext {
+	public static class EelFileContext extends ParserRuleContext {
+		public ProcedureContext procedures;
 		public TerminalNode EOF() { return getToken(EelParser.EOF, 0); }
 		public List<ProcedureContext> procedure() {
 			return getRuleContexts(ProcedureContext.class);
@@ -114,23 +115,23 @@ public class EelParser extends Parser {
 		public ProcedureContext procedure(int i) {
 			return getRuleContext(ProcedureContext.class,i);
 		}
-		public ProceduresContext(ParserRuleContext parent, int invokingState) {
+		public EelFileContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_procedures; }
+		@Override public int getRuleIndex() { return RULE_eelFile; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof EelParserListener ) ((EelParserListener)listener).enterProcedures(this);
+			if ( listener instanceof EelParserListener ) ((EelParserListener)listener).enterEelFile(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof EelParserListener ) ((EelParserListener)listener).exitProcedures(this);
+			if ( listener instanceof EelParserListener ) ((EelParserListener)listener).exitEelFile(this);
 		}
 	}
 
-	public final ProceduresContext procedures() throws RecognitionException {
-		ProceduresContext _localctx = new ProceduresContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_procedures);
+	public final EelFileContext eelFile() throws RecognitionException {
+		EelFileContext _localctx = new EelFileContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_eelFile);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -142,7 +143,7 @@ public class EelParser extends Parser {
 				{
 				{
 				setState(26);
-				procedure();
+				((EelFileContext)_localctx).procedures = procedure();
 				}
 				}
 				setState(29); 

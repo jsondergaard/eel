@@ -15,8 +15,9 @@ fun Token.endPoint() = Point(line, charPositionInLine + (if (type == EOF) 0 else
 fun ParserRuleContext.toPosition(considerPosition: Boolean) : Position? {
     return if (considerPosition) Position(start.startPoint(), stop.endPoint()) else null
 }
+fun EelFileContext.toAst(considerPosition: Boolean = false) : EelFile = EelFile(this.procedure().map { it.toAst(considerPosition) }, toPosition(considerPosition))
 
-fun ProcedureContext.toAst(considerPosition: Boolean = false) : Procedure = Procedure(this.line().map { it.statement().toAst(considerPosition) }, toPosition(considerPosition))
+fun ProcedureContext.toAst(considerPosition: Boolean = false) : Procedure = Procedure(this.ID().text, this.line().map { it.statement().toAst(considerPosition) }, toPosition(considerPosition))
 
 fun StatementContext.toAst(considerPosition: Boolean = false) : Statement = when (this) {
     is VarDeclarationStatementContext -> VarDeclaration(varDeclaration().assignment().ID().text, varDeclaration().assignment().expression().toAst(considerPosition), toPosition(considerPosition))

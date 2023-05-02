@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e8c6687-4b50-4fcf-bc45-cb4c03441603" name="Changes" comment="Preliminary AST pass">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Compile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserBaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/EelListener.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Mapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Mapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Model.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Model.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ParserFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ParserFacade.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Validator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Validator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelParser.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/program.txt" afterDir="false" />
     </list>
@@ -141,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682435956373</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Preliminary AST pass">
+      <created>1683019069101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683019069101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

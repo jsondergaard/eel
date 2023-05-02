@@ -8,15 +8,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface EelParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link EelParser#procedures}.
+	 * Enter a parse tree produced by {@link EelParser#eelFile}.
 	 * @param ctx the parse tree
 	 */
-	void enterProcedures(EelParser.ProceduresContext ctx);
+	void enterEelFile(EelParser.EelFileContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link EelParser#procedures}.
+	 * Exit a parse tree produced by {@link EelParser#eelFile}.
 	 * @param ctx the parse tree
 	 */
-	void exitProcedures(EelParser.ProceduresContext ctx);
+	void exitEelFile(EelParser.EelFileContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link EelParser#procedure}.
 	 * @param ctx the parse tree

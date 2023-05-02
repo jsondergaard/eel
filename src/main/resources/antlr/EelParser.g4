@@ -1,7 +1,7 @@
 parser grammar EelParser;
 options {tokenVocab=EelLexer;}
 
-procedures:                 procedure+ EOF;
+eelFile:                    procedures=procedure+ EOF;
 procedure:                  BEGINPROCEDURE ID LPAREN parameters? RPAREN lines=line+ ENDPROCEDURE;
 parameters:                 ID (COMMA ID)*;
 line:                       statement;

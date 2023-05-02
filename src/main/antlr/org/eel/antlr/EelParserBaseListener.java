@@ -17,13 +17,13 @@ public class EelParserBaseListener implements EelParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProcedures(EelParser.ProceduresContext ctx) { }
+	@Override public void enterEelFile(EelParser.EelFileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProcedures(EelParser.ProceduresContext ctx) { }
+	@Override public void exitEelFile(EelParser.EelFileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

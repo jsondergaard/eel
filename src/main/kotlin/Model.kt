@@ -72,19 +72,17 @@ fun Node.transform(operation: (Node) -> Node) : Node {
 // Eel specific part
 //
 
-data class Procedure(val lines: List<Statement>, override val position: Position? = null) : Node
+data class EelFile(val procedures: List<Procedure>, override val position: Position? = null) : Node
+data class Procedure(val name: String, val lines: List<Statement>, override val position: Position? = null) : Node
 
 interface Expression : Node { }
 interface Statement : Node { }
-interface Structure : Node { }
 
 interface Type : Node { }
 
 //
 // Types
 //
-
-data class IntType(override val position: Position? = null) : Type
 
 //
 // Expressions

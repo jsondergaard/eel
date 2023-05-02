@@ -1,14 +1,11 @@
 procedure main()
-    if(5 + 1) then
-        print("Hej verden!")
-    endIf
+    print("Hej verden!")
+endProcedure
 
-    let valueOne = 2
-    let valueTwo = 3
+procedure mainTo()
+    print("Hej verden, igen")
+endProcedure
 
-    let valueThree = valueOne + valueTwo
-
-    print(valueThree)
-
-    print("Farvel verden!")
+procedure mainTre()
+    print("Hej verden, igen igen")
 endProcedure
