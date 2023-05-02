@@ -5,10 +5,6 @@ import kotlin.reflect.KParameter
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 
-//
-// Generic part: valid for all languages
-//
-
 interface Node {
     val position: Position?
 }
@@ -76,18 +72,19 @@ fun Node.transform(operation: (Node) -> Node) : Node {
 // Eel specific part
 //
 
-data class Program(val procedures: List<Statement>, override val position: Position? = null) : Node
-
-interface Statement : Node { }
+data class Procedure(val lines: List<Statement>, override val position: Position? = null) : Node
 
 interface Expression : Node { }
-interface Line : Node { }
+interface Statement : Node { }
+interface Structure : Node { }
 
 interface Type : Node { }
 
 //
 // Types
 //
+
+data class IntType(override val position: Position? = null) : Type
 
 //
 // Expressions
@@ -97,6 +94,19 @@ interface BinaryExpression : Expression {
     val left: Expression
     val right: Expression
 }
+
+data class SumExpression(override val left: Expression, override val right: Expression, override val position: Position? = null) : BinaryExpression
+data class LessThanExpression(override val left: Expression, override val right: Expression, override val position: Position? = null) : BinaryExpression
+data class GreatherThanExpression(override val left: Expression, override val right: Expression, override val position: Position? = null) : BinaryExpression
+data class IntLit(val value: String, override val position: Position? = null) : Expression
+data class StringLit(val value: String, override val position: Position? = null) : Expression
+data class VarReference(val varName: String, override val position: Position? = null) : Expression
+
+//
+// Structures
+//
+
+data class IfStructure(val value: Expression, override val position: Position? = null) : Statement
 
 //
 // Statements

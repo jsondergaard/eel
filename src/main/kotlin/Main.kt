@@ -2,27 +2,39 @@ package org.eel
 
 import org.eel.antlr.EelLexer
 import org.eel.antlr.EelParser
-import org.antlr.v4.runtime.*
-import org.antlr.v4.runtime.tree.*
+import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Label
+import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.Opcodes.*
+import java.io.File
 import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.util.*
 
 fun main(args: Array<String>) {
-    EelParserFacade.parse(FileInputStream("target/classes/program.txt"))
-    /*val inputStream = if (args.isNotEmpty()) {
-        FileInputStream(args[0])
-    } else {
-        FileInputStream("target/classes/program.txt")
+    val code : InputStream? = when (args.size) {
+        0 -> FileInputStream("target/classes/program.txt")
+        1 -> FileInputStream(File(args[0]))
+        else -> {
+            System.err.println("Pass 0 arguments or 1")
+            System.exit(1)
+            null
+        }
+    }
+    val parsingResult = EelParserFacade.parse(code!!)
+    if (!parsingResult.isCorrect()) {
+        println("ERRORS:")
+        parsingResult.errors.forEach { println(" * L${it.position.line}: ${it.message}") }
+        return
+    }
+    val root = parsingResult.root!!
+    val errors = root.validate()
+    if (errors.isNotEmpty()) {
+        println("ERRORS:")
+        errors.forEach { println(" * L${it.position.line}: ${it.message}") }
+        return
     }
 
-    val lexer = EelLexer(CharStreams.fromStream(inputStream))
-    val tokens = CommonTokenStream(lexer)
-    val parser = EelParser(tokens)
-    val listener = EelListener()
-
-    val tree = parser.prog()
-    val walker = ParseTreeWalker()
-
-    println("Se mit træ!\n" + tree.toStringTree(parser.ruleNames.toMutableList()))
-
-    walker.walk(listener, tree)*/
+    println(root.lines)
 }

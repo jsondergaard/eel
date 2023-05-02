@@ -1,10 +1,5 @@
 lexer grammar EelLexer;
 
-//@lexer::header {package org.eel.antlr;}
-
-// Whitespace
-WS:         [ \t\r\n]+ -> skip;
-
 // Keywords
 LET:            'let';
 BEGINPROCEDURE: 'procedure';
@@ -16,23 +11,30 @@ IF:             'if';
 ENDIF:          'endIf';
 THEN:           'then';
 ELSE:           'else';
+PRINT:          'print';
 
 // Literals
 INTLIT:         [0-9]+;
 STRINGLIT:      '"' ~[\r\n"]* '"';
+DECLIT:         '0'|[1-9][0-9]* '.' [0-9]+ ;
 
 // Operators
-PLUS:       '+';
-MINUS:      '-';
-ASTERISK:   '*';
-DIVISION:   '/';
-ASSIGN:     '=';
-LPAREN:     '(';
-RPAREN:     ')';
-COMMA:      ',';
+PLUS:         '+';
+MINUS:        '-';
+ASTERISK:     '*';
+DIVISION:     '/';
+ASSIGN:       '=';
+LPAREN:       '(';
+RPAREN:       ')';
+COMMA:        ',';
+GREATERTHAN:  '>';
+LESSTHAN:     '<';
 
 // Identifiers
-FUNCTIONS:          'SUM' | 'AVERAGE' | 'print';
+FUNCTIONS:          'SUM' | 'AVERAGE' | PRINT;
 METHODS:            '.'('format' | 'count');
 BOOLEANOPERATOR:    [<>]'='?|'=='|'!=';
-ID:                 [a-zA-Z][a-zA-Z0-9]*;
+
+// Whitespace
+WS:             [ \t\r\n]+ -> skip;
+ID:             [a-zA-Z][a-zA-Z0-9]*;

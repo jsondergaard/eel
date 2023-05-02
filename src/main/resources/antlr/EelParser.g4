@@ -1,40 +1,28 @@
 parser grammar EelParser;
-
-//@header {package org.eel.antlr;}
-
 options {tokenVocab=EelLexer;}
 
-program:                    procedures=procedure+ EOF;
-procedure:                  BEGINPROCEDURE ID LPAREN formalParameters? RPAREN lines=line+ ENDPROCEDURE;
-formalParameters:           ID (COMMA ID)*;
-line:                       (declaration | statement | controlStructure);
-declaration:                LET ID assignment? #varDelaration;
-assignment:                 ASSIGN expression;
-statement:                  RETURN? expression;
-expression:                 userValue (assignment | (operator value)*)
-                            | staticValue (operator value)* ;
-operator:                   (binaryOperator
-                            | boolOperator);
-binaryOperator:             (PLUS
-                            |MINUS
-                            |ASTERISK
-                            |DIVISION);
-boolOperator:               BOOLEANOPERATOR;
-controlStructure:           (iterativeControlStructure
-                            | selectiveControlStructure);
-selectiveControlStructure:  ifStructure;
-ifStructure:                ifCondition THEN line elseIfStructure* elseStructure? ENDIF;
-ifCondition:                IF LPAREN expression RPAREN;
-elseIfStructure:            ELSE ifCondition line;
-elseStructure:              ELSE THEN line;
-iterativeControlStructure:  repeatStructure;
-repeatStructure:            REPEATWHILE LPAREN expression RPAREN line ENDREPEAT;
-value:                      (staticValue
-                            | userValue);
-staticValue:                (INTLIT
-                            | STRINGLIT
-                            |function) method*;
-function:                   FUNCTIONS LPAREN actualParameters RPAREN;
-userValue:                  ID (LPAREN actualParameters? RPAREN)?;
-actualParameters:           value (COMMA value)*;
-method:                     METHODS (LPAREN actualParameters? RPAREN)?;
+procedures:                 procedure+ EOF;
+procedure:                  BEGINPROCEDURE ID LPAREN parameters? RPAREN lines=line+ ENDPROCEDURE;
+parameters:                 ID (COMMA ID)*;
+line:                       statement;
+statement:                  varDeclaration # varDeclarationStatement
+                            | assignment   # assignmentStatement
+                            | print        # printStatement
+                            | ifStruct     # ifStructure
+                            | return       # returnStatement;
+varDeclaration:             LET assignment;
+assignment:                 ID ASSIGN expression;
+return:                     RETURN? expression;
+expression:                 left=expression operator=(DIVISION|ASTERISK) right=expression       # binaryOperation
+                            | left=expression operator=(PLUS|MINUS) right=expression            # binaryOperation
+                            | left=expression operator=(GREATERTHAN|LESSTHAN) right=expression  # binaryOperation
+                            | LPAREN expression RPAREN                                          # parenExpression
+                            | ID                                                                # varReference
+                            | MINUS expression                                                  # minusExpression
+                            | INTLIT                                                            # intLiteral
+                            | DECLIT                                                            # decimalLiteral
+                            | STRINGLIT                                                         # stringLiteral;
+ifStruct:                   IF LPAREN expression RPAREN THEN statement elseStructure? ENDIF;
+elseStructure:              ELSE THEN statement;
+function:                   FUNCTIONS LPAREN ID RPAREN;
+print:                      PRINT LPAREN expression RPAREN;

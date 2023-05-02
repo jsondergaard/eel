@@ -1,5 +1,5 @@
 procedure main()
-    if(5 > 1) then
+    if(5 + 1) then
         print("Hej verden!")
     endIf
 

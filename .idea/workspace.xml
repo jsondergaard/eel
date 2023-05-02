@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e8c6687-4b50-4fcf-bc45-cb4c03441603" name="Changes" comment="Change name in IntelliJ">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Mapper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Model.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ParserFacade.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Validator.kt" afterDir="false" />
+    <list default="true" id="8e8c6687-4b50-4fcf-bc45-cb4c03441603" name="Changes" comment="Preliminary AST pass">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Compile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelLexer.java" afterDir="false" />
@@ -19,8 +16,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParser.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserBaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr/org/eel/antlr/EelParserListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/EelListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/EelListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/EelListener.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Mapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Mapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Model.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Model.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ParserFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ParserFacade.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Validator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Validator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/antlr/EelParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/antlr/EelParser.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/program.txt" afterDir="false" />
     </list>
@@ -56,32 +59,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_directory_selection": "/Users/jacob/IdeaProjects/eelKotlin/src/main/antlr",
-    "last_opened_file_path": "/Users/jacob/IdeaProjects/eelKotlin/src/main/resources/antlr",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.30583873",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/jacob/IdeaProjects/eelKotlin/src/main/antlr&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jacob/IdeaProjects/eelKotlin/src/main/resources/antlr&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.30583873&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/antlr" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/ast" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="Eel" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.eel.MainKt" />
+      <module name="eel" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.eel.MainKt" />
       <module name="eel" />
       <method v="2">
@@ -99,6 +112,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -116,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682380365932</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Preliminary AST pass">
+      <created>1682435956373</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682435956373</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,7 +157,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Change name in IntelliJ" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change name in IntelliJ" />
+    <MESSAGE value="Preliminary AST pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preliminary AST pass" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

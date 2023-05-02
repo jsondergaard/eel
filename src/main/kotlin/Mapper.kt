@@ -7,7 +7,6 @@ import org.antlr.v4.runtime.Token
 interface ParseTreeToAstMapper<in PTN : ParserRuleContext, out ASTN : Node> {
     fun map(parseTreeNode: PTN): ASTN
 }
-fun ProcedureContext.toAst(considerPosition: Boolean = false) : Program = Program(this.line().map { it.statement().toAst(considerPosition) }, toPosition(considerPosition))
 
 fun Token.startPoint() = Point(line, charPositionInLine)
 
@@ -17,19 +16,30 @@ fun ParserRuleContext.toPosition(considerPosition: Boolean) : Position? {
     return if (considerPosition) Position(start.startPoint(), stop.endPoint()) else null
 }
 
-fun ProgramContext.toAst(considerPosition: Boolean = false) : Line = when (this) {
-    else -> throw UnsupportedOperationException(this.javaClass.canonicalName)
-}
-
-fun LineContext.toAst(considerPosition: Boolean = false) : Line = when (this) {
-    else -> throw UnsupportedOperationException(this.javaClass.canonicalName)
-}
+fun ProcedureContext.toAst(considerPosition: Boolean = false) : Procedure = Procedure(this.line().map { it.statement().toAst(considerPosition) }, toPosition(considerPosition))
 
 fun StatementContext.toAst(considerPosition: Boolean = false) : Statement = when (this) {
-    /*is PrintStatementContext -> Print(print().expression().toAst(considerPosition), toPosition(considerPosition))*/
+    is VarDeclarationStatementContext -> VarDeclaration(varDeclaration().assignment().ID().text, varDeclaration().assignment().expression().toAst(considerPosition), toPosition(considerPosition))
+    is PrintStatementContext -> Print(print().expression().toAst(considerPosition), toPosition(considerPosition))
+    is IfStructureContext -> IfStructure(ifStruct().expression().toAst(considerPosition), ifStruct().statement().toPosition(considerPosition))
     else -> throw UnsupportedOperationException(this.javaClass.canonicalName)
 }
 
-class EelParseTreeToAstMapper : ParseTreeToAstMapper<LineContext, Line> {
-    override fun map(parseTreeNode: LineContext): Line = parseTreeNode.toAst()
+fun ExpressionContext.toAst(considerPosition: Boolean = false) : Expression = when (this) {
+    is BinaryOperationContext -> toAst(considerPosition)
+    is IntLiteralContext -> IntLit(text, toPosition(considerPosition))
+    is StringLiteralContext -> StringLit(text, toPosition(considerPosition))
+    is VarReferenceContext -> VarReference(text, toPosition(considerPosition))
+    else -> throw UnsupportedOperationException(this.javaClass.canonicalName)
+}
+
+fun BinaryOperationContext.toAst(considerPosition: Boolean = false) : Expression = when (operator.text) {
+    ">" -> GreatherThanExpression(left.toAst(considerPosition), right.toAst(considerPosition), toPosition(considerPosition))
+    "<" -> LessThanExpression(left.toAst(considerPosition), right.toAst(considerPosition), toPosition(considerPosition))
+    "+" -> SumExpression(left.toAst(considerPosition), right.toAst(considerPosition), toPosition(considerPosition))
+    else -> throw UnsupportedOperationException(this.javaClass.canonicalName)
+}
+
+class EelParseTreeToAstMapper : ParseTreeToAstMapper<StatementContext, Statement> {
+    override fun map(parseTreeNode: StatementContext): Statement = parseTreeNode.toAst()
 }
